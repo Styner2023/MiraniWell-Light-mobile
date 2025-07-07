@@ -89,12 +89,12 @@ const SignupForm = () => {
   return (
     <Form {...form}>
       <div className="w-full max-w-md sm:w-420 flex-center flex-col px-4">
-        <img src="/assets/images/Mirani-Well-Logo.png" alt="Mirani Well logo" className="w-full max-w-[280px] h-auto" />
+        <img src="https://pub-d6475def8a4045c2992481493ad3c8e4.r2.dev/1.logo.png" alt="Mirani Well logo" className="w-full max-w-[280px] h-auto" />
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 text-charcoal">
           Create a new account
         </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
+        <p className="text-charcoal/80 small-medium md:base-regular mt-2">
           To use Mirani Well, please enter your details
         </p>
 
@@ -215,7 +215,7 @@ const SignupForm = () => {
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="text-small-regular text-charcoal/80 text-center mt-2">
             Already have an account?
             <Link
               to="/sign-in"

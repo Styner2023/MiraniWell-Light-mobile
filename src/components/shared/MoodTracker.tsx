@@ -31,55 +31,55 @@ const MoodTracker = () => {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <Heart className="w-6 h-6 text-red-400" />
-                    <h3 className="text-xl font-bold text-light-1">Today's Mood</h3>
+                    <Heart className="w-6 h-6 text-red-500" />
+                    <h3 className="text-xl font-bold text-gray-900">Today's Mood</h3>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Sun className="w-5 h-5 text-yellow-400" />
-                    <span className="text-light-2 font-medium text-sm">Today</span>
+                    <Sun className="w-5 h-5 text-yellow-500" />
+                    <span className="text-gray-700 font-medium text-sm">Today</span>
                 </div>
             </div>
 
             {/* Today's Quick Summary */}
             <div className="grid grid-cols-2 gap-4">
-                <div className="bg-dark-3 rounded-xl p-4 border border-dark-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                     <div className="flex items-center gap-3 mb-2">
-                        <Heart className="w-5 h-5 text-red-400" />
-                        <span className="font-medium text-light-1 text-sm">Mood</span>
+                        <Heart className="w-5 h-5 text-red-500" />
+                        <span className="font-medium text-gray-900 text-sm">Mood</span>
                     </div>
-                    <div className="text-2xl font-bold text-light-1">
+                    <div className="text-2xl font-bold text-gray-900">
                         {todayEntry.mood}
-                        <span className="text-sm text-light-3 ml-1">/5</span>
+                        <span className="text-sm text-gray-600 ml-1">/5</span>
                     </div>
                 </div>
-                <div className="bg-dark-3 rounded-xl p-4 border border-dark-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                     <div className="flex items-center gap-3 mb-2">
-                        <Zap className="w-5 h-5 text-yellow-400" />
-                        <span className="font-medium text-light-1 text-sm">Energy</span>
+                        <Zap className="w-5 h-5 text-yellow-500" />
+                        <span className="font-medium text-gray-900 text-sm">Energy</span>
                     </div>
-                    <div className="text-2xl font-bold text-light-1">
+                    <div className="text-2xl font-bold text-gray-900">
                         {todayEntry.energy}
-                        <span className="text-sm text-light-3 ml-1">/5</span>
+                        <span className="text-sm text-gray-600 ml-1">/5</span>
                     </div>
                 </div>
-                <div className="bg-dark-3 rounded-xl p-4 border border-dark-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                     <div className="flex items-center gap-3 mb-2">
-                        <Droplets className="w-5 h-5 text-cyan-400" />
-                        <span className="font-medium text-light-1 text-sm">Water</span>
+                        <Droplets className="w-5 h-5 text-cyan-500" />
+                        <span className="font-medium text-gray-900 text-sm">Water</span>
                     </div>
-                    <div className="text-2xl font-bold text-light-1">
+                    <div className="text-2xl font-bold text-gray-900">
                         {todayEntry.water}
-                        <span className="text-sm text-light-3 ml-1">glasses</span>
+                        <span className="text-sm text-gray-600 ml-1">glasses</span>
                     </div>
                 </div>
-                <div className="bg-dark-3 rounded-xl p-4 border border-dark-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                     <div className="flex items-center gap-3 mb-2">
-                        <Moon className="w-5 h-5 text-blue-400" />
-                        <span className="font-medium text-light-1 text-sm">Sleep</span>
+                        <Moon className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium text-gray-900 text-sm">Sleep</span>
                     </div>
-                    <div className="text-2xl font-bold text-light-1">
+                    <div className="text-2xl font-bold text-gray-900">
                         {todayEntry.sleep}
-                        <span className="text-sm text-light-3 ml-1">hours</span>
+                        <span className="text-sm text-gray-600 ml-1">hours</span>
                     </div>
                 </div>
             </div>
@@ -87,33 +87,33 @@ const MoodTracker = () => {
             {/* Activities Status */}
             <div className="grid grid-cols-2 gap-4">
                 <div className={`p-3 rounded-xl border ${todayEntry.exercise
-                        ? 'bg-green-500/10 border-green-500/20'
-                        : 'bg-gray-500/10 border-gray-500/20'
+                    ? 'bg-green-50 border-green-200'
+                    : 'bg-gray-50 border-gray-200'
                     }`}>
                     <div className="flex items-center gap-2">
-                        <Activity className={`w-4 h-4 ${todayEntry.exercise ? 'text-green-400' : 'text-gray-400'}`} />
-                        <span className="text-sm font-medium text-light-1">Exercise</span>
+                        <Activity className={`w-4 h-4 ${todayEntry.exercise ? 'text-green-500' : 'text-gray-400'}`} />
+                        <span className="text-sm font-medium text-gray-900">Exercise</span>
                         {todayEntry.exercise && (
-                            <div className="ml-auto w-2 h-2 bg-green-400 rounded-full"></div>
+                            <div className="ml-auto w-2 h-2 bg-green-500 rounded-full"></div>
                         )}
                     </div>
                 </div>
                 <div className={`p-3 rounded-xl border ${todayEntry.meditation
-                        ? 'bg-purple-500/10 border-purple-500/20'
-                        : 'bg-gray-500/10 border-gray-500/20'
+                    ? 'bg-purple-50 border-purple-200'
+                    : 'bg-gray-50 border-gray-200'
                     }`}>
                     <div className="flex items-center gap-2">
-                        <Brain className={`w-4 h-4 ${todayEntry.meditation ? 'text-purple-400' : 'text-gray-400'}`} />
-                        <span className="text-sm font-medium text-light-1">Meditation</span>
+                        <Brain className={`w-4 h-4 ${todayEntry.meditation ? 'text-purple-500' : 'text-gray-400'}`} />
+                        <span className="text-sm font-medium text-gray-900">Meditation</span>
                         {todayEntry.meditation && (
-                            <div className="ml-auto w-2 h-2 bg-purple-400 rounded-full"></div>
+                            <div className="ml-auto w-2 h-2 bg-purple-500 rounded-full"></div>
                         )}
                     </div>
                 </div>
             </div>
 
             {/* Quick Action Button */}
-            <button className="w-full bg-primary-500 hover:bg-primary-600 text-white p-3 rounded-xl font-medium transition-colors">
+            <button className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-xl font-medium transition-colors">
                 Update Today's Mood
             </button>
         </div>

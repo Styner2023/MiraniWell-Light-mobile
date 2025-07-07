@@ -25,7 +25,7 @@ const courseContent = [
         day: 3,
         title: "Physical Wellness Practices",
         content: "Discover simple physical practices that enhance your body's natural energy flow.",
-        videoUrl: "https://www.youtube.com/embed/9kJQBeD5-9U", // Physical Wellness
+        videoUrl: "https://www.youtube.com/embed/inpok4MKVLM", // Physical Wellness
     },
     {
         day: 4,
@@ -37,7 +37,7 @@ const courseContent = [
         day: 5,
         title: "Integration: Mind and Body",
         content: "Learn how your thoughts directly influence your physical wellbeing and how to harness this connection.",
-        videoUrl: "https://www.youtube.com/embed/XiVVYl2kZ68", // Integration Practices
+        videoUrl: "https://www.youtube.com/embed/ZToicYcHIOU", // Integration Practices
     },
     {
         day: 6,
@@ -49,7 +49,7 @@ const courseContent = [
         day: 7,
         title: "Complete Integration",
         content: "On this final day of the free trial, learn how to bring all aspects together for holistic wellbeing.",
-        videoUrl: "https://www.youtube.com/embed/a0JlQNryh-o", // Complete Integration
+        videoUrl: "https://www.youtube.com/embed/LWGSwfchz_A", // Complete Integration
         homework: "Reflection: Write about your experience with the 7-day trial and how you plan to integrate these practices into your daily life."
     }
 ];
@@ -929,13 +929,13 @@ const MindBodySpirit = () => {
                                                             className="w-full relative overflow-hidden rounded-lg cursor-pointer group border border-dark-4"
                                                             onClick={() => {
                                                                 setIsModalOpen(true);
-                                                                setModalVideoUrl("https://www.youtube.com/embed/9kJQBeD5-9U");
+                                                                setModalVideoUrl("https://www.youtube.com/embed/inpok4MKVLM");
                                                             }}
                                                         >
                                                             <div className="relative aspect-video bg-dark-4 rounded-md overflow-hidden">
                                                                 <div className="absolute inset-0 bg-gradient-to-r from-teal-900/30 to-dark-4 opacity-70"></div>
                                                                 <img
-                                                                    src="https://img.youtube.com/vi/9kJQBeD5-9U/mqdefault.jpg"
+                                                                    src="https://img.youtube.com/vi/inpok4MKVLM/mqdefault.jpg"
                                                                     alt="Video thumbnail"
                                                                     className="absolute inset-0 w-full h-full object-cover opacity-50"
                                                                 />
@@ -1075,13 +1075,13 @@ const MindBodySpirit = () => {
                                                             className="w-full relative overflow-hidden rounded-lg cursor-pointer group border border-dark-4"
                                                             onClick={() => {
                                                                 setIsModalOpen(true);
-                                                                setModalVideoUrl("https://www.youtube.com/embed/XiVVYl2kZ68");
+                                                                setModalVideoUrl("https://www.youtube.com/embed/ZToicYcHIOU");
                                                             }}
                                                         >
                                                             <div className="relative aspect-video bg-dark-4 rounded-md overflow-hidden">
                                                                 <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-dark-4 opacity-70"></div>
                                                                 <img
-                                                                    src="https://img.youtube.com/vi/XiVVYl2kZ68/mqdefault.jpg"
+                                                                    src="https://img.youtube.com/vi/ZToicYcHIOU/mqdefault.jpg"
                                                                     alt="Video thumbnail"
                                                                     className="absolute inset-0 w-full h-full object-cover opacity-50"
                                                                 />
@@ -1210,13 +1210,13 @@ const MindBodySpirit = () => {
                                                             className="w-full relative overflow-hidden rounded-lg cursor-pointer group border border-dark-4"
                                                             onClick={() => {
                                                                 setIsModalOpen(true);
-                                                                setModalVideoUrl("https://www.youtube.com/embed/a0JlQNryh-o");
+                                                                setModalVideoUrl("https://www.youtube.com/embed/LWGSwfchz_A");
                                                             }}
                                                         >
                                                             <div className="relative aspect-video bg-dark-4 rounded-md overflow-hidden">
                                                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-dark-4 opacity-70"></div>
                                                                 <img
-                                                                    src="https://img.youtube.com/vi/a0JlQNryh-o/mqdefault.jpg"
+                                                                    src="https://img.youtube.com/vi/LWGSwfchz_A/mqdefault.jpg"
                                                                     alt="Video thumbnail"
                                                                     className="absolute inset-0 w-full h-full object-cover opacity-50"
                                                                 />

@@ -37,27 +37,11 @@ if (!isAppwriteDisabled) {
     client.setEndpoint(appwriteConfig.url);
     client.setProject(appwriteConfig.projectId);
     
-    // Dev keys are for server-side usage, not client-side
-    // For client-side, we need proper platform configuration in Appwrite
     console.log("Appwrite client configured with:", { 
       url: appwriteConfig.url,
       projectId: appwriteConfig.projectId,
-      hasApiKey: !!import.meta.env.VITE_APPWRITE_API_KEY,
-      isDevelopment: import.meta.env.DEV,
-      hasProjectId: !!import.meta.env.VITE_APPWRITE_PROJECT_ID,
-      hasUrl: !!import.meta.env.VITE_APPWRITE_URL,
-      currentOrigin: typeof window !== 'undefined' ? window.location.origin : 'server'
+      isDevelopment: import.meta.env.DEV
     });
-    
-    // Enhanced debugging for network issues
-    if (appwriteConfig.projectId === 'mock_project_id') {
-      console.warn('🚨 WARNING: Using mock project ID. Check Vercel environment variables!');
-      console.warn('🔧 Expected environment variables:', {
-        VITE_APPWRITE_URL: import.meta.env.VITE_APPWRITE_URL,
-        VITE_APPWRITE_PROJECT_ID: import.meta.env.VITE_APPWRITE_PROJECT_ID,
-        VITE_USE_MOCK_DATA: import.meta.env.VITE_USE_MOCK_DATA
-      });
-    }
     
     // Initialize services
     account = new Account(client);
@@ -67,21 +51,38 @@ if (!isAppwriteDisabled) {
     
   } catch (error) {
     console.error("Failed to configure Appwrite client:", error);
-    // Log detailed error information
-    console.error("Configuration details:", {
-      url: appwriteConfig.url,
-      projectId: appwriteConfig.projectId,
-      environment: import.meta.env.NODE_ENV,
-      allEnvVars: Object.keys(import.meta.env).filter(key => key.startsWith('VITE_'))
-    });
   }
 } else {
-  console.log('🚨 Appwrite initialization disabled via VITE_DISABLE_APPWRITE=true');
-  // Create a dummy client to avoid TypeScript errors
-  // These should never be used when Appwrite is disabled
-  const dummyClient = new Client();
-  account = new Account(dummyClient);
-  databases = new Databases(dummyClient);
-  storage = new Storage(dummyClient);
-  avatars = new Avatars(dummyClient);
+  console.log('🚨 Appwrite disabled - using mock client');
+  // Create a mock client that doesn't make network requests
+  const mockClient = {
+    setEndpoint: () => mockClient,
+    setProject: () => mockClient
+  } as any;
+  
+  // Create mock services that return promises but don't make network calls
+  account = {
+    get: () => Promise.reject(new Error('Appwrite disabled')),
+    create: () => Promise.reject(new Error('Appwrite disabled')),
+    createEmailSession: () => Promise.reject(new Error('Appwrite disabled')),
+    deleteSession: () => Promise.reject(new Error('Appwrite disabled'))
+  } as any;
+  
+  databases = {
+    createDocument: () => Promise.reject(new Error('Appwrite disabled')),
+    updateDocument: () => Promise.reject(new Error('Appwrite disabled')),
+    getDocument: () => Promise.reject(new Error('Appwrite disabled')),
+    listDocuments: () => Promise.reject(new Error('Appwrite disabled')),
+    deleteDocument: () => Promise.reject(new Error('Appwrite disabled'))
+  } as any;
+  
+  storage = {
+    createFile: () => Promise.reject(new Error('Appwrite disabled')),
+    getFilePreview: () => Promise.reject(new Error('Appwrite disabled')),
+    deleteFile: () => Promise.reject(new Error('Appwrite disabled'))
+  } as any;
+  
+  avatars = {
+    getInitials: () => Promise.reject(new Error('Appwrite disabled'))
+  } as any;
 }

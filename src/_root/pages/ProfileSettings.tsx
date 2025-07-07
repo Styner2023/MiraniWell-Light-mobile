@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "@/context/AuthContext";
+import { useClerk } from "@clerk/clerk-react";
+import { useUserContext } from "@/context/SmartAuthContext";
 import { useSignOutAccount } from "@/lib/react-query/queries";
 import { Button, Switch } from "@/components/ui";
 import {
@@ -28,6 +29,7 @@ const ProfileSettings = () => {
     const { user, isLoading } = useUserContext();
     const navigate = useNavigate();
     const { mutate: signOut } = useSignOutAccount();
+    const { signOut: clerkSignOut } = useClerk();
 
     // Show loading if user data is not yet available
     if (isLoading) {
@@ -78,7 +80,7 @@ const ProfileSettings = () => {
         }));
     };
 
-    const handleSignOut = () => {
+    const handleSignOut = async () => {
         // Add mobile-specific logging
         console.log('📱 Sign out attempt:', {
             timestamp: new Date().toISOString(),
@@ -86,8 +88,16 @@ const ProfileSettings = () => {
             isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
         });
 
-        signOut();
-        navigate("/sign-in");
+        try {
+            // Sign out from Clerk
+            await clerkSignOut();
+            // Also call the regular signOut to clean up any local state
+            signOut();
+            // Navigate to sign in page
+            navigate("/clerk-sign-in");
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
     };
 
     const settingsGroups = [

@@ -103,30 +103,30 @@ const WellnessDashboard = () => {
     return (
         <div className="space-y-6">
             {/* Wellness Metrics Grid */}
-            <div className="bg-dark-2 rounded-2xl p-6 border border-dark-4">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                 <div className="flex items-center gap-3 mb-6">
-                    <BarChart3 className="w-6 h-6 text-primary-500" />
-                    <h3 className="text-xl font-bold text-light-1">Wellness Metrics</h3>
+                    <BarChart3 className="w-6 h-6 text-blue-500" />
+                    <h3 className="text-xl font-bold text-gray-900">Wellness Metrics</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {metrics.map((metric, index) => (
-                        <div key={index} className="bg-dark-2 rounded-2xl p-4 border border-dark-4">
+                        <div key={index} className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
                             <div className="flex items-center gap-3 mb-3">
-                                <div className={`${metric.color} bg-dark-3 rounded-xl p-2`}>
+                                <div className={`${metric.color} bg-gray-100 rounded-xl p-2`}>
                                     {metric.icon}
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="font-semibold text-light-1">{metric.label}</h4>
+                                    <h4 className="font-semibold text-gray-900">{metric.label}</h4>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-2xl font-bold text-light-1">{metric.value}</span>
-                                        <div className="text-xs text-light-3">of {metric.maxValue}</div>
+                                        <span className="text-2xl font-bold text-gray-900">{metric.value}</span>
+                                        <div className="text-xs text-gray-600">of {metric.maxValue}</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mb-2">
-                                <div className="w-full bg-dark-4 rounded-full h-2">
+                                <div className="w-full bg-gray-200 rounded-full h-2">
                                     <div
                                         className={`h-2 rounded-full transition-all duration-300 progress-bar ${metric.color.includes('red') ? 'bg-red-400' :
                                             metric.color.includes('yellow') ? 'bg-yellow-400' :
@@ -139,7 +139,7 @@ const WellnessDashboard = () => {
                             </div>
 
                             <div className="flex items-center justify-between">
-                                <div className="text-xs font-medium text-light-2">{metric.label}</div>
+                                <div className="text-xs font-medium text-gray-700">{metric.label}</div>
                                 <div className="flex items-center gap-1">
                                     {getTrendIcon(metric.trend)}
                                     <span className={`text-xs font-medium ${metric.trend === 'up' ? 'text-green-400' :
@@ -154,10 +154,10 @@ const WellnessDashboard = () => {
             </div>
 
             {/* Weekly Trend Chart */}
-            <div className="bg-dark-2 rounded-2xl p-6 border border-dark-4">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                 <div className="flex items-center gap-3 mb-6">
-                    <Calendar className="w-6 h-6 text-primary-500" />
-                    <h3 className="text-xl font-bold text-light-1">Weekly Trends</h3>
+                    <Calendar className="w-6 h-6 text-blue-500" />
+                    <h3 className="text-xl font-bold text-gray-900">Weekly Trends</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -165,15 +165,15 @@ const WellnessDashboard = () => {
                     <div className="flex gap-6 text-sm">
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                            <span className="text-light-3">Mood</span>
+                            <span className="text-gray-700">Mood</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                            <span className="text-light-3">Energy</span>
+                            <span className="text-gray-700">Energy</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                            <span className="text-light-3">Stress</span>
+                            <span className="text-gray-700">Stress</span>
                         </div>
                     </div>
 
@@ -195,7 +195,7 @@ const WellnessDashboard = () => {
                                         data-bar-height={getBarHeight(data.stress)}
                                     ></div>
                                 </div>
-                                <span className="text-xs text-light-3">{data.day}</span>
+                                <span className="text-xs text-gray-600">{data.day}</span>
                             </div>
                         ))}
                     </div>

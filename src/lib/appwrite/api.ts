@@ -2,6 +2,9 @@ import { ID, Query } from "appwrite";
 
 import { appwriteConfig, account, databases, storage, avatars } from "./config";
 import { IUpdatePost, INewPost, INewUser, IUpdateUser } from "@/types";
+
+// Export the disabled state for use in other modules
+export const isAppwriteDisabled = import.meta.env.VITE_DISABLE_APPWRITE === 'true';
 import { isDevelopment } from "./devUtils";
 import { deleteCurrentSession, setSessionData, clearSessionData, isSessionError } from "./sessionUtils";
 import { mobileSessionFix } from "./mobileSessionFix";
@@ -411,7 +414,7 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
   if (isDevelopment) {
     // Import dynamically to avoid circular dependencies
     const { getInfinitePosts: devGetInfinitePosts } = await import('./devApi');
-    return devGetInfinitePosts({ pageParam: pageParam.toString() });
+    return devGetInfinitePosts({ pageParam: pageParam?.toString() || '' });
   }
 
   const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
@@ -699,6 +702,27 @@ export async function getUserById(userId: string) {
 
 // ============================== UPDATE USER
 export async function updateUser(user: IUpdateUser) {
+  // Check if Appwrite is disabled
+  const isAppwriteDisabled = import.meta.env.VITE_DISABLE_APPWRITE === 'true';
+  
+  if (isAppwriteDisabled) {
+    console.log('Appwrite disabled - returning mock user update');
+    // Return a mock successful response when Appwrite is disabled
+    return {
+      $id: user.userId,
+      name: user.name,
+      bio: user.bio,
+      imageUrl: user.imageUrl,
+      imageId: user.imageId,
+      isCourseUser: user.isCourseUser,
+      trialStartDate: user.trialStartDate,
+      isTrialActive: user.isTrialActive,
+      hasPaid: user.hasPaid,
+      paymentDate: user.paymentDate,
+      homeworkSubmission: user.homeworkSubmission
+    };
+  }
+
   const hasFileToUpdate = user.file.length > 0;
   try {
     let image = {
@@ -761,7 +785,8 @@ export async function updateUser(user: IUpdateUser) {
 
     return updatedUser;
   } catch (error) {
-    console.log(error);
+    console.log('UpdateUser error:', error);
+    throw error;
   }
 }
 

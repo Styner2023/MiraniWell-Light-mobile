@@ -61,7 +61,7 @@ export const useGetPosts = () => {
     queryFn: getInfinitePosts as any,
     getNextPageParam: (lastPage: any) => {
       // If there's no data, there are no more pages.
-      if (lastPage && lastPage.documents.length === 0) {
+      if (!lastPage || !lastPage.documents || lastPage.documents.length === 0) {
         return null;
       }
 

@@ -6,7 +6,7 @@ const Bottombar = () => {
   const { pathname } = useLocation();
 
   return (
-    <section className="bottom-bar">
+    <section className="bottom-bar navigation-container">
       {bottombarLinks.map((link) => {
         const isActive = pathname === link.route;
         return (
@@ -14,14 +14,14 @@ const Bottombar = () => {
             key={`bottombar-${link.label}`}
             to={link.route}
             className={`${isActive && "rounded-[10px] bg-primary-500 "
-              } flex-center flex-col gap-1 p-2 transition`}>
+              } flex-center flex-col gap-1 p-2 nav-link-optimized ${isActive ? 'active' : ''}`}>
             {link.imgURL.includes('.png') ? (
               <img
                 src={link.imgURL}
                 alt={link.label}
                 width={20}
                 height={20}
-                className="object-contain bottombar-icon-large"
+                className="object-contain bottombar-icon-large nav-icon"
               />
             ) : (
               <img
@@ -29,11 +29,11 @@ const Bottombar = () => {
                 alt={link.label}
                 width={16}
                 height={16}
-                className={`bottombar-icon-small ${isActive ? "invert-white" : ""}`}
+                className={`bottombar-icon-small nav-icon ${isActive ? "invert-white" : ""}`}
               />
             )}
 
-            <p className="tiny-medium text-light-2">{link.label}</p>
+            <p className="tiny-medium text-light-2 nav-text">{link.label}</p>
           </Link>
         );
       })}

@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { JournalEntry } from '@/types';
 import { Heart, Sun, Battery, Zap, Feather, Save, Sparkles, Clock, Calendar, BarChart3, Award } from 'lucide-react';
+import './Journal.css';
 
 const JournalPage: React.FC = () => {
     const [currentMood, setCurrentMood] = useState<number>(5);
@@ -41,11 +42,11 @@ const JournalPage: React.FC = () => {
     };
 
     const today = new Date();
-    const formattedDate = today.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+    const formattedDate = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
 
     return (
@@ -54,16 +55,9 @@ const JournalPage: React.FC = () => {
             <div className="fixed inset-0 z-0 opacity-5">
                 <div className="absolute inset-0 bg-[radial-gradient(#9D6EF9_1px,transparent_1px)] [background-size:20px_20px]"></div>
             </div>
-            
-            {/* Header with background image */}
+
             <div className="px-4 sm:px-6 py-6 sm:py-8 relative overflow-hidden rounded-b-3xl mb-4 sm:mb-6">
-                <div 
-                    className="absolute inset-0 z-0 bg-cover bg-center opacity-30 transition-all duration-700 hover:opacity-40 hover:scale-105" 
-                    style={{ 
-                        backgroundImage: 'url(https://images.unsplash.com/photo-1483546416237-76fd26bbcdd1?auto=format&fit=crop&q=80&w=1600&ixlib=rb-4.0.3)', 
-                        backgroundPosition: 'center 40%' 
-                    }}
-                />
+                <div className="journal-header-bg absolute inset-0 z-0 bg-cover bg-center opacity-30 transition-all duration-700 hover:opacity-40 hover:scale-105" />
                 <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary-700/60 via-primary-700/40 to-dark-1"></div>
                 <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-3 animate-fade-in">
@@ -105,11 +99,10 @@ const JournalPage: React.FC = () => {
                                 <button
                                     key={mood}
                                     onClick={() => handleMoodSelect(mood)}
-                                    className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-medium transition-all hover:scale-110 active:scale-95 ${
-                                        currentMood === mood
-                                            ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white border-pink-400 shadow-lg shadow-pink-500/30 animate-pulse-subtle'
-                                            : 'border-dark-4 text-light-3 hover:border-primary-500 hover:text-white bg-dark-3 hover:shadow-lg hover:shadow-primary-500/20'
-                                    }`}
+                                    className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-medium transition-all hover:scale-110 active:scale-95 ${currentMood === mood
+                                        ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white border-pink-400 shadow-lg shadow-pink-500/30 animate-pulse-subtle'
+                                        : 'border-dark-4 text-light-3 hover:border-primary-500 hover:text-white bg-dark-3 hover:shadow-lg hover:shadow-primary-500/20'
+                                        }`}
                                 >
                                     {mood}
                                 </button>
@@ -120,7 +113,7 @@ const JournalPage: React.FC = () => {
                             <div className="text-xs text-light-3">Neutral</div>
                             <div className="text-xs text-light-3">Excellent</div>
                         </div>
-                        
+
                         {/* Mood description based on selected value */}
                         <div className="mt-4">
                             <div className="p-3 glass-card hover-scale-subtle bg-dark-1/40">
@@ -150,16 +143,17 @@ const JournalPage: React.FC = () => {
                         </CardHeader>
                         <CardContent>
                             <div className="relative pb-8">
+                                <label htmlFor="energy-range" className="sr-only">Energy Level</label>
                                 <input
+                                    id="energy-range"
                                     type="range"
                                     min="1"
                                     max="10"
                                     value={currentEnergy}
                                     onChange={(e) => setCurrentEnergy(Number(e.target.value))}
-                                    className="custom-range"
-                                    style={{
-                                        background: `linear-gradient(to right, #22c55e ${(currentEnergy - 1) * 11.1}%, #1f2937 ${(currentEnergy - 1) * 11.1}%)`
-                                    }}
+                                    className="custom-range energy-range"
+                                    title={`Energy level: ${currentEnergy}/10`}
+                                    aria-label={`Energy level: ${currentEnergy}/10`}
                                 />
                                 <div className="flex justify-between mt-2 px-1 text-xs text-light-3">
                                     <span>Low</span>
@@ -185,16 +179,17 @@ const JournalPage: React.FC = () => {
                         </CardHeader>
                         <CardContent>
                             <div className="relative pb-8">
+                                <label htmlFor="stress-range" className="sr-only">Stress Level</label>
                                 <input
+                                    id="stress-range"
                                     type="range"
                                     min="1"
                                     max="10"
                                     value={currentStress}
                                     onChange={(e) => setCurrentStress(Number(e.target.value))}
-                                    className="custom-range"
-                                    style={{
-                                        background: `linear-gradient(to right, #f97316 ${(currentStress - 1) * 11.1}%, #1f2937 ${(currentStress - 1) * 11.1}%)`
-                                    }}
+                                    className="custom-range stress-range"
+                                    title={`Stress level: ${currentStress}/10`}
+                                    aria-label={`Stress level: ${currentStress}/10`}
                                 />
                                 <div className="flex justify-between mt-2 px-1 text-xs text-light-3">
                                     <span>Calm</span>
@@ -222,7 +217,7 @@ const JournalPage: React.FC = () => {
                     </CardHeader>
                     <CardContent className="space-y-3">
                         {gratitudeItems.map((item, index) => (
-                            <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                            <div key={index} className={`relative animate-fade-in animate-delay-${index * 100}`}>
                                 <Input
                                     placeholder={`Gratitude ${index + 1}...`}
                                     value={item}
@@ -271,11 +266,11 @@ const JournalPage: React.FC = () => {
                                 <Sparkles size={16} className="animate-pulse-subtle" />
                             </div>
                         </div>
-                        
+
                         <div className="mt-4 grid grid-cols-3 gap-2">
                             {['Focus', 'Gratitude', 'Mindfulness', 'Kindness', 'Growth', 'Reflection'].map((item, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     onClick={() => setIntention(item)}
                                     className={`text-center text-xs py-2 px-1 rounded-lg cursor-pointer transition-all hover:bg-blue-500/20 ${intention === item ? 'bg-blue-500/20 text-blue-300 font-medium' : 'text-light-3 bg-dark-3/50'}`}
                                 >
@@ -312,7 +307,7 @@ const JournalPage: React.FC = () => {
                         </div>
                         <div className="flex justify-between items-center mt-3 text-xs text-light-3">
                             <div className="flex items-center gap-1">
-                                <Clock size={14} /> 
+                                <Clock size={14} />
                                 <span>Last updated: {new Date().toLocaleTimeString()}</span>
                             </div>
                             <div>
@@ -348,7 +343,7 @@ const JournalPage: React.FC = () => {
                         </div>
                     </CardContent>
                 </Card>
-                
+
                 {/* Journaling Quote */}
                 <Card className="glass-effect overflow-hidden relative group hover-scale-subtle">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 group-hover:from-blue-500/10 group-hover:to-indigo-500/10 transition-all"></div>
@@ -390,7 +385,7 @@ const JournalPage: React.FC = () => {
                         </span>
                     </span>
                 </Button>
-                
+
                 {/* Weekly Mood Progress */}
                 <Card className="glass-effect overflow-hidden relative mt-8">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-teal-500/5 to-blue-500/5"></div>
@@ -410,23 +405,14 @@ const JournalPage: React.FC = () => {
                                 {/* Fake data for the mood chart */}
                                 {[7, 5, 8, 6, 9, 6, 7].map((value, index) => (
                                     <div key={index} className="relative group">
-                                        <div 
-                                            className="w-6 sm:w-10 rounded-t-lg transition-all duration-300 hover:opacity-100 opacity-80 cursor-pointer" 
-                                            style={{ 
-                                                height: `${value * 10}%`,
-                                                background: `linear-gradient(to top, ${value > 7 ? '#4ade80' : value > 5 ? '#60a5fa' : '#f87171'}, ${value > 7 ? '#22c55e' : value > 5 ? '#3b82f6' : '#ef4444'})`,
-                                            }}
+                                        <div
+                                            className={`w-6 sm:w-10 rounded-t-lg transition-all duration-300 hover:opacity-100 opacity-80 cursor-pointer mood-bar mood-bar-height-${value * 10} ${value > 7 ? 'mood-high' : value > 5 ? 'mood-medium' : 'mood-low'}`}
+                                            data-height={value}
                                         ></div>
-                                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-light-3">
-                                            {['M', 'T', 'W', 'T', 'F', 'S', 'S'][index]}
-                                        </div>
-                                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity -top-8 left-1/2 transform -translate-x-1/2 bg-dark-1 text-light-1 text-xs px-2 py-1 rounded">
-                                            {value}/10
-                                        </div>
                                     </div>
                                 ))}
                             </div>
-                            
+
                             {/* Grid lines */}
                             <div className="absolute left-0 right-0 bottom-0 top-0 flex flex-col justify-between opacity-10">
                                 {[0, 1, 2, 3, 4].map((_, i) => (

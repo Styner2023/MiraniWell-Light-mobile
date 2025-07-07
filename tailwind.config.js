@@ -20,19 +20,30 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary-500': '#9D6EF9', // More sophisticated purple
-        'primary-600': '#8047F5', // Deeper purple
-        'primary-700': '#6931E0', // Darkest purple for depth
-        'secondary-500': '#FFCA80', // Softer gold
-        'secondary-600': '#E8B366', // Deeper gold
-        'accent-1': '#4AEAFF', // Teal accent
-        'accent-2': '#F973FF', // Pink accent
+        'primary-500': '#58CAF1', // Light blue accent (changed from #239AD5)
+        'primary-600': '#239AD5', // Ocean blue (moved from primary-500)
+        'primary-700': '#158ACB', // Deeper ocean blue (moved from primary-600)
+        'secondary-500': '#39AFE2', // Bright sky blue
+        'secondary-600': '#19A2B0', // Teal accent
+        'accent-1': '#58CAF1', // Light blue accent
+        'accent-2': '#88EDFC', // Bright aqua
+        'ocean-blue': '#239AD5', // Main ocean blue
+        'ocean-teal': '#61D0CA', // Ocean teal
+        'aqua-light': '#88EDFC', // Light aqua
+        'aqua-dark': '#19A2B0', // Dark aqua
+        'gray-ocean': '#9EA092', // Ocean gray
+        'gray-light': '#C1CAC7', // Light gray
+        'sage': '#E7E2D5', // Sage/beige
+        'slate-blue': '#4C97A3', // Slate blue
+        'steel-blue': '#6A8589', // Steel blue
+        'powder-blue': '#88C0C4', // Powder blue
+        'charcoal': '#304C52', // Dark charcoal
         'off-white': '#F0F4FF',
         'red': '#FF5A5A',
-        'dark-1': '#0A0A10', // Slightly blue-tinted black
-        'dark-2': '#12121A', // Richer dark background
-        'dark-3': '#1A1A25', // Slightly bluer dark
-        'dark-4': '#232336', // More distinguished dark
+        'dark-1': '#FFFFFF', // Pure white background
+        'dark-2': '#61D0CA', // Ocean teal - for cards and secondary elements
+        'dark-3': '#88EDFC', // Bright aqua - for interactive elements
+        'dark-4': '#19A2B0', // Dark aqua - for borders and accents
         'light-1': '#FFFFFF',
         'light-2': '#F6F6FF', // Slight purple tint
         'light-3': '#9F9FBB', // More vibrant light purple

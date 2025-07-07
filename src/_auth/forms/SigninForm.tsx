@@ -126,12 +126,12 @@ const SigninForm = () => {
   return (
     <Form {...form}>
       <div className="w-full max-w-md sm:w-420 flex-center flex-col px-4">
-        <img src="/assets/images/Mirani-Well-Logo.png" alt="Mirani Well logo" className="w-full max-w-[280px] h-auto" />
+        <img src="https://pub-d6475def8a4045c2992481493ad3c8e4.r2.dev/1.logo.png" alt="Mirani Well logo" className="w-full max-w-[280px] h-auto" />
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12 text-charcoal">
           Log in to your account
         </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
+        <p className="text-charcoal/80 small-medium md:base-regular mt-2">
           Welcome back! Please enter your details.
         </p>
         <form
@@ -203,7 +203,7 @@ const SigninForm = () => {
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="text-small-regular text-charcoal/80 text-center mt-2">
             Don&apos;t have an account?
             <Link
               to="/sign-up"
@@ -216,8 +216,8 @@ const SigninForm = () => {
           {isDevelopment && (
             <div className="mt-4 p-3 bg-yellow-600/10 border border-yellow-600/20 rounded-lg">
               <p className="text-xs text-yellow-400 font-medium mb-2">🚀 Development Mode</p>
-              <p className="text-xs text-light-2 mb-2">Test credentials:</p>
-              <div className="text-xs text-light-3 space-y-1">
+              <p className="text-xs text-charcoal/80 mb-2">Test credentials:</p>
+              <div className="text-xs text-charcoal/70 space-y-1">
                 <div>• test@test.com / password</div>
                 <div>• demo@demo.com / demo</div>
                 <div>• john@example.com / password123</div>

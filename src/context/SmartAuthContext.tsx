@@ -15,7 +15,7 @@ export const INITIAL_USER = {
 };
 
 // Dummy context for Clerk pages or when Clerk user is authenticated
-function createClerkAwareContext(clerkUser: any) {
+function createClerkAwareContext(clerkUser: any, isLoaded: boolean = true) {
     return {
         user: clerkUser ? {
             id: clerkUser.id,
@@ -26,8 +26,8 @@ function createClerkAwareContext(clerkUser: any) {
             bio: '',
         } : INITIAL_USER,
         setUser: () => { },
-        isLoading: false,
-        isInitialized: true,
+        isLoading: !isLoaded,
+        isInitialized: isLoaded,
         isAuthenticated: !!clerkUser,
         setIsAuthenticated: () => { },
         checkAuthUser: async () => !!clerkUser,
@@ -49,8 +49,8 @@ type IContextType = {
 const ClerkAwareAuthContext = createContext<IContextType | null>(null);
 
 function ClerkAwareAuthProvider({ children }: { children: React.ReactNode }) {
-    const { user: clerkUser, isSignedIn } = useUser();
-    const contextValue = createClerkAwareContext(isSignedIn ? clerkUser : null);
+    const { user: clerkUser, isSignedIn, isLoaded } = useUser();
+    const contextValue = createClerkAwareContext(isSignedIn ? clerkUser : null, isLoaded);
 
     return (
         <ClerkAwareAuthContext.Provider value={contextValue}>
@@ -97,7 +97,7 @@ export function useUserContext() {
         const context = useContext(ClerkAwareAuthContext);
         if (!context) {
             // Fallback - create context on the fly
-            return createClerkAwareContext(isSignedIn ? clerkUser : null);
+            return createClerkAwareContext(isSignedIn ? clerkUser : null, isLoaded);
         }
         return context;
     }
@@ -108,7 +108,7 @@ export function useUserContext() {
         const context = useContext(ClerkAwareAuthContext);
         if (!context) {
             // Fallback - create context on the fly
-            return createClerkAwareContext(null);
+            return createClerkAwareContext(null, isLoaded);
         }
         return context;
     }
@@ -122,7 +122,7 @@ export function useUserContext() {
     const context = useContext(ClerkAwareAuthContext);
     if (!context) {
         // Fallback - create context on the fly
-        return createClerkAwareContext(isSignedIn ? clerkUser : null);
+        return createClerkAwareContext(isSignedIn ? clerkUser : null, isLoaded);
     }
     return context;
 }
